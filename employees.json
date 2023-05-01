@@ -1,3 +1,13 @@
 {
-  "employees": []
+  "employees": [
+    {
+      "empname": "Darshan",
+      "DOJ": "2023/02/22",
+      "department": "C++",
+      "designation": "OS Developer",
+      "salary": "49000",
+      "image": "https://www.melivecode.com/users/1.png",
+      "id": 1
+    }
+  ]
 }

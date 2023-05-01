@@ -86,7 +86,7 @@ xhttp.onreadystatechange=function(){
             title:"Edit Employee",
             html:
             '<input id="id" type="hidden" value="'+objects[`${id}`]+'">'+
-             '<input id="empname" class="swal2-input" type="text" value="'+objects[`empname`]+'">'+
+             '<input id="empname" class="swal2-input" required type="text" value="'+objects[`empname`]+'">'+
             '<input id="DOJ" type="text" class="swal2-input" value="'+objects[`DOJ`]+'">'+
             '<input id="department" type="text" class="swal2-input" value="'+objects[`department`]+'">'+
             '<input id="designation" type="text" class="swal2-input" value="'+objects[`designation`]+'">'+
