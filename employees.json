@@ -1,11 +1,11 @@
 {
   "employees": [
     {
-      "empname": "Darshan",
-      "DOJ": "2023/02/22",
-      "department": "C++",
-      "designation": "OS Developer",
-      "salary": "49000",
+      "empname": "Srikanth",
+      "DOJ": "22/07/2023",
+      "department": "Flutter",
+      "designation": "Dev",
+      "salary": "20000",
       "image": "https://www.melivecode.com/users/1.png",
       "id": 1
     }
