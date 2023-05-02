@@ -2,6 +2,12 @@
     height: 25px;
     width: 100px;
   }
+
+  #logo{
+    height: 80px;
+    width: 150px;
+  }
+
   .button {
   display: inline-block;
   background: #4285f4;
@@ -19,3 +25,4 @@
   -webkit-transform: translate(0px, -10px) scale(1.2);
           transform: translate(0px, -10px) scale(1.2);
 }
+

@@ -1,6 +1,7 @@
-function loadTable() {
+// for the retrieval of data
+function loadTable(empname='') {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost:3000/employees");
+    xhttp.open("GET", `http://localhost:3000/employees?empname_like=${empname}`);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -27,20 +28,53 @@ function loadTable() {
 
 loadTable();
 
+// searching
+function search(){
+const empname=document.getElementById("searchvalue").value;
+loadTable(empname);
+}
+
+// creating the record
+
 function createEmployee() {
+
     Swal.fire({
         title: "Create user",
         html:
-            '<input id="id" type="hidden">' +
-            '<input id="empname"  class="swal2-input" placeholder="Employee Name ">' +
-            '<input id="DOJ" class="swal2-input" placeholder="Joining Date">' +
-            '<input id="department" class="swal2-input" placeholder="Department">' +
-            '<input id="designation" class="swal2-input" placeholder="Designation">' +
-            '<input id="salary" class="swal2-input" placeholder="Salary">',
-        preConfirm: () => {
+          '<input id="id" type="hidden">' +
+          '<input id="empname" class="swal2-input" placeholder="Employee Name" required>' +
+          '<input id="DOJ" class="swal2-input" placeholder="Joining Date" required>' +
+          '<input id="department" class="swal2-input" placeholder="Department" required>' +
+          '<input id="designation" class="swal2-input" placeholder="Designation" required>' +
+          '<input id="salary" class="swal2-input" placeholder="Salary" required>',
+        preConfirm:  () => {
+          const enameinput = document.getElementById("empname").value;
+          const DOJInput = document.getElementById("DOJ").value;
+          const deptinput = document.getElementById("department").value;
+          const designationInput = document.getElementById("designation").value;
+          const salinput = document.getElementById("salary").value;
+
+    //   for removing the whitespaces
+          const empname = enameinput.trim();
+          const DOJ = DOJInput.trim();
+          const department = deptinput.trim();
+          const designation = designationInput.trim();
+          const salary = salinput.trim();
+      
+          if (!empname || !DOJ || !department || !designation || !salary) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Validation error',
+              text: 'Please fill in the fields',
+            });
+            return false;
+          }
+
+           else {
             userCreate();
+          }
         }
-    })
+      });
 }
 
 function userCreate() {
@@ -74,6 +108,7 @@ function userCreate() {
 
 }
 
+// editing the record
 function showUserEditBox(id) {
     console.log(id);
     const xhttp = new XMLHttpRequest();
@@ -123,11 +158,20 @@ function userEdit(id) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const objects = JSON.parse(this.responseText);
-            Swal.fire(objects["message"]);
-            loadTable();
+       
+        
         }
+        Swal.fire({
+            title:'Successfully Updated',
+            icon:'success'
+    });
+    loadTable();
+        
     }
+    
 }
+
+// deleting the record
 
 function userDelete(id) {
     const xhttp = new XMLHttpRequest();
@@ -152,5 +196,7 @@ function userDelete(id) {
             }}
             });    
 }
+
+
 
          
