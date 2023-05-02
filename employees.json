@@ -2,12 +2,27 @@
   "employees": [
     {
       "empname": "Srikanth",
-      "DOJ": "22/07/2003",
-      "department": "Flutter",
-      "designation": "Dev",
-      "salary": "20000",
-      "image": "https://www.melivecode.com/users/1.png",
+      "DOJ": "2023/02/22",
+      "department": "C++",
+      "designation": "OS Developer",
+      "salary": "49000",
       "id": 1
+    },
+    {
+      "empname": "Darshan",
+      "DOJ": "2023/02/22",
+      "department": "C++",
+      "designation": "OS Dev",
+      "salary": "49000",
+      "id": 4
+    },
+    {
+      "empname": "Rakesh",
+      "DOJ": "2023/02/21",
+      "department": "C++",
+      "designation": "ps dev",
+      "salary": "49000",
+      "id": 5
     }
   ]
 }

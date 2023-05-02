@@ -3,27 +3,65 @@ function loadTable(empname='') {
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", `http://localhost:3000/employees?empname_like=${empname}`);
     xhttp.send();
+    // xhttp.onreadystatechange = function () {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         console.log(this.responseText);
+    //         var trHTML = "";
+    //         const objects = JSON.parse(this.responseText);
+    //         for (let object of objects) {
+    //             trHTML += "<tr>";
+    //             trHTML += "<td>" + object["id"] + "</td>";
+    //             trHTML += "<td>" + object["empname"] + "</td>";
+    //             trHTML += "<td>" + object["DOJ"] + "</td>";
+    //             trHTML += "<td>" + object["department"] + "</td>";
+    //             trHTML += "<td>" + object["designation"] + "</td>";
+    //             trHTML += "<td>" + object["salary"] + "</td>";
+    //             trHTML += '<td><img style="width:50px;height:50px" src="' + object["image"] + '"></td>';
+    //             trHTML += '<td><button type="button" class="btn btn-outline-primary" onclick="showUserEditBox(' + object["id"] + ')">Edit</button>';
+    //             trHTML += '<button type="button" class="btn btn-outline-danger" onclick="userDelete(' + object["id"] + ')">Del</button></td>';
+    //             trHTML += "</tr>";
+    //         }
+    //         document.getElementById("mytable").innerHTML = trHTML;
+    //     }
+    // };
+
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
-            var trHTML = "";
-            const objects = JSON.parse(this.responseText);
-            for (let object of objects) {
-                trHTML += "<tr>";
-                trHTML += "<td>" + object["id"] + "</td>";
-                trHTML += "<td>" + object["empname"] + "</td>";
-                trHTML += "<td>" + object["DOJ"] + "</td>";
-                trHTML += "<td>" + object["department"] + "</td>";
-                trHTML += "<td>" + object["designation"] + "</td>";
-                trHTML += "<td>" + object["salary"] + "</td>";
-                trHTML += '<td><img style="width:50px;height:50px" src="' + object["image"] + '"></td>';
-                trHTML += '<td><button type="button" class="btn btn-outline-primary" onclick="showUserEditBox(' + object["id"] + ')">Edit</button>';
-                trHTML += '<button type="button" class="btn btn-outline-danger" onclick="userDelete(' + object["id"] + ')">Del</button></td>';
-                trHTML += "</tr>";
-            }
-            document.getElementById("mytable").innerHTML = trHTML;
+          console.log(this.responseText);
+          var trHTML = "";
+          const objects = JSON.parse(this.responseText);
+        //   for the random generation of the employeeimage
+          const avatarData = {
+            "avatars": [
+              {"url": "https://www.melivecode.com/users/1.png"},
+              {"url": "https://www.melivecode.com/users/2.png"},
+              {"url": "https://www.melivecode.com/users/3.png"},
+              {"url": "https://www.melivecode.com/users/4.png"},
+              {"url": "https://www.melivecode.com/users/5.png"},
+              {"url": "https://www.melivecode.com/users/6.png"},
+              {"url": "https://www.melivecode.com/users/7.png"},
+              {"url": "https://www.melivecode.com/users/8.png"}
+            ]
+          }
+          const avatarUrls = avatarData.avatars; // extract the avatar URLs from avatarData
+          for (let i = 0; i < objects.length; i++) {
+            const object = objects[i];
+            const avatarUrl = avatarUrls[i % avatarUrls.length].url; // select the avatar URL based on the index
+            trHTML += "<tr>";
+            trHTML += "<td>" + object["id"] + "</td>";
+            trHTML += "<td>" + object["empname"] + "</td>";
+            trHTML += "<td>" + object["DOJ"] + "</td>";
+            trHTML += "<td>" + object["department"] + "</td>";
+            trHTML += "<td>" + object["designation"] + "</td>";
+            trHTML += "<td>" + object["salary"] + "</td>";
+            trHTML += '<td><img style="width:50px;height:50px" src="' + avatarUrl + '"></td>'; // use the selected avatar URL
+            trHTML += '<td><button type="button" class="btn btn-outline-primary" onclick="showUserEditBox(' + object["id"] + ')">Edit</button>';
+            trHTML += '<button type="button" class="btn btn-outline-danger" onclick="userDelete(' + object["id"] + ')">Del</button></td>';
+            trHTML += "</tr>";
+          }
+          document.getElementById("mytable").innerHTML = trHTML;
         }
-    };
+      };
 }
 
 loadTable();
@@ -41,12 +79,21 @@ function createEmployee() {
     Swal.fire({
         title: "Create user",
         html:
+        
           '<input id="id" type="hidden">' +
+          
           '<input id="empname" class="swal2-input" placeholder="Employee Name" required>' +
+          '<label for="empname">Employee Name</label>'+
           '<input id="DOJ" class="swal2-input" placeholder="Joining Date" required>' +
+          '<label for="DOJ">Date Of Joining</label>'+
           '<input id="department" class="swal2-input" placeholder="Department" required>' +
+          '<label for="department">EMP Department</label>'+
           '<input id="designation" class="swal2-input" placeholder="Designation" required>' +
-          '<input id="salary" class="swal2-input" placeholder="Salary" required>',
+          '<label for="designation">EMP Designation</label>'+
+          '<input id="salary" class="swal2-input" placeholder="Salary" required>'+
+          '<label for="salary">Monthly Salary</label>',
+          showCancelButton:true,
+
         preConfirm:  () => {
           const enameinput = document.getElementById("empname").value;
           const DOJInput = document.getElementById("DOJ").value;
@@ -94,7 +141,7 @@ function userCreate() {
             department: department,
             designation: designation,
             salary: salary,
-            image: "https://www.melivecode.com/users/1.png",
+            // image: "https://www.melivecode.com/users/1.png",
 
         })
     );
@@ -121,11 +168,18 @@ function showUserEditBox(id) {
                 title: "Edit Employee",
                 html:
                     '<input id="id" type="hidden" value="' + objects[`${id}`] + '">' +
+                    
                     '<input id="empname" class="swal2-input" required type="text" value="' + objects[`empname`] + '">' +
+                    '<label for="empname">Employee Name</label>'+
                     '<input id="DOJ" type="text" class="swal2-input" value="' + objects[`DOJ`] + '">' +
+                    '<label for="DOJ">Date of Joining</label>'+
                     '<input id="department" type="text" class="swal2-input" value="' + objects[`department`] + '">' +
+                    '<label for="department">EMP Department</label>'+
+
                     '<input id="designation" type="text" class="swal2-input" value="' + objects[`designation`] + '">' +
-                    '<input id="salary" type="text" class="swal2-input"  value="' + objects[`salary`] + '">',
+                    '<label for="designation">EMP Designation</label>'+
+                    '<input id="salary" type="text" class="swal2-input"  value="' + objects[`salary`] + '">'+
+                    '<label for="designation">Monthly Salary</label>',
                 preConfirm: () => {
                     userEdit(id);
                 }
@@ -151,7 +205,7 @@ function userEdit(id) {
             department: department,
             designation: designation,
             salary: salary,
-            image: "https://www.melivecode.com/users/1.png",
+            // image: "https://www.melivecode.com/users/1.png",
         })
     );
 
