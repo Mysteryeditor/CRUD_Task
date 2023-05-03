@@ -38,18 +38,6 @@ function search() {
 function createEmployee() {
   Swal.fire({
     title: "Create user",
-    // html:
-    //   '<input id="id" type="hidden">' +
-    //   '<input id="empname" class="swal2-input" placeholder="Employee Name" required>' +
-    //   '<label for="empname">Employee Name</label>' +
-    //   '<input id="DOJ" class="swal2-input" placeholder="Joining Date" required>' +
-    //   '<label for="DOJ">Date Of Joining</label>' +
-    //   '<input id="department" class="swal2-input" placeholder="Department" required>' +
-    //   '<label for="department">EMP Department</label>' +
-    //   '<input id="designation" class="swal2-input" placeholder="Designation" required>' +
-    //   '<label for="designation">EMP Designation</label>' +
-    //   '<input id="salary" class="swal2-input" placeholder="Salary" required>' +
-    //   '<label for="salary">Monthly Salary</label>',
     html:
     '<input id="id" type="hidden">'+
 '<input id="empname" class="swal2-input" placeholder="Employee Name" required>'+
