@@ -1,22 +1,3 @@
 {
-  "employees": [
-    {
-      "empname": "Sri J",
-      "DOJ": "22/07/2023",
-      "department": "Flutter",
-      "designation": "Dev",
-      "salary": "20000",
-      "image": "https://www.melivecode.com/users/3.png",
-      "id": 1
-    },
-    {
-      "empname": "divya",
-      "DOJ": "22/07/2023",
-      "department": "Flutter",
-      "designation": "Dev",
-      "salary": "20000",
-      "image": "https://www.melivecode.com/users/3.png",
-      "id": 2
-    }
-  ]
+  "employees": []
 }

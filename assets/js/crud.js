@@ -38,18 +38,33 @@ function search() {
 function createEmployee() {
   Swal.fire({
     title: "Create user",
+    // html:
+    //   '<input id="id" type="hidden">' +
+    //   '<input id="empname" class="swal2-input" placeholder="Employee Name" required>' +
+    //   '<label for="empname">Employee Name</label>' +
+    //   '<input id="DOJ" class="swal2-input" placeholder="Joining Date" required>' +
+    //   '<label for="DOJ">Date Of Joining</label>' +
+    //   '<input id="department" class="swal2-input" placeholder="Department" required>' +
+    //   '<label for="department">EMP Department</label>' +
+    //   '<input id="designation" class="swal2-input" placeholder="Designation" required>' +
+    //   '<label for="designation">EMP Designation</label>' +
+    //   '<input id="salary" class="swal2-input" placeholder="Salary" required>' +
+    //   '<label for="salary">Monthly Salary</label>',
     html:
-      '<input id="id" type="hidden">' +
-      '<input id="empname" class="swal2-input" placeholder="Employee Name" required>' +
-      '<label for="empname">Employee Name</label>' +
-      '<input id="DOJ" class="swal2-input" placeholder="Joining Date" required>' +
-      '<label for="DOJ">Date Of Joining</label>' +
-      '<input id="department" class="swal2-input" placeholder="Department" required>' +
-      '<label for="department">EMP Department</label>' +
-      '<input id="designation" class="swal2-input" placeholder="Designation" required>' +
-      '<label for="designation">EMP Designation</label>' +
-      '<input id="salary" class="swal2-input" placeholder="Salary" required>' +
-      '<label for="salary">Monthly Salary</label>',
+    '<input id="id" type="hidden">'+
+'<input id="empname" class="swal2-input" placeholder="Employee Name" required>'+
+'<label for="empname">Employee Name</label>'+
+'<input id="DOJ" class="swal2-input" placeholder="Joining Date" required>'+
+'<label for="DOJ">Date Of Joining</label>'+
+'<input id="department" class="swal2-input" placeholder="Department" required>'+
+'<label for="department">EMP Department</label>'+
+'<input id="designation" class="swal2-input" placeholder="Designation" required>'+
+'<label for="designation">EMP Designation</label>'+
+'<input id="salary" class="swal2-input" placeholder="Salary" required>'+
+'<label for="salary">Monthly Salary</label>'+
+'<input type="file" style="margin-left:50px;margin-top:20px"id="image" accept="image/*" required>'+
+'<label for="image">Employee Image</label>',
+
     showCancelButton: true,
 
     preConfirm: () => {
@@ -89,6 +104,10 @@ function userCreate() {
   const designation = document.getElementById("designation").value;
   const salary = document.getElementById("salary").value;
 
+const imageInput = document.getElementById("image");
+const filename = "assets/images/" + imageInput.files[0].name;
+
+
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "http://localhost:3000/employees/");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -99,7 +118,7 @@ function userCreate() {
       department: department,
       designation: designation,
       salary: salary,
-      image: "https://www.melivecode.com/users/3.png",//default image
+      image: filename,//default image
 
     })
   );
@@ -136,7 +155,8 @@ function showUserEditBox(id) {
           '<input id="designation" type="text" class="swal2-input" value="' + objects[`designation`] + '">' +
           '<label for="designation">EMP Designation</label>' +
           '<input id="salary" type="text" class="swal2-input"  value="' + objects[`salary`] + '">' +
-          '<label for="designation">Monthly Salary</label>',
+          '<label for="designation">Monthly Salary</label>'+
+          '<input style="margin-left:50px;margin-top:20px" id="image" type="file" class="swal2-input" value="' + objects[`image`] + '">' ,
           showCancelButton: true,
         preConfirm: () => {
           userEdit(id);
@@ -152,7 +172,8 @@ function userEdit(id) {
   const department = document.getElementById("department").value;
   const designation = document.getElementById("designation").value;
   const salary = document.getElementById("salary").value;
-  console.log(empname);
+  const imageInput = document.getElementById("image");
+const filename = "assets/images/" + imageInput.files[0].name;
   const xhttp = new XMLHttpRequest();
   xhttp.open("PUT", `http://localhost:3000/employees/${id}`);
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -163,7 +184,7 @@ function userEdit(id) {
       department: department,
       designation: designation,
       salary: salary,
-      image: "https://www.melivecode.com/users/3.png",
+      image: filename, 
     })
   );
 
