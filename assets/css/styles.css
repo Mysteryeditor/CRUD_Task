@@ -1,7 +1,41 @@
+body{
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
+}
+
+#logo{
+  height: 70px;
+  width: 140px;
+}
+
+#logo:hover{
+ scale: 1.1;
+}
+
+#ed{
+  font-size: 25px;
+  font-style: italic;
+}
+
+.button {
+display: inline-block;
+background: #4285f4;
+color: #fff;
+text-transform: uppercase;
+padding: 0px 20px;
+border-radius: 5px;
+box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+cursor: pointer;
+-webkit-transition: all ease-in-out 300ms;
+transition: all ease-in-out 300ms;
+}
 #create1{
     height: 25px;
     width: 100px;
+    float: right;
   }
+
+  
 
   #searchvalue{
     border-color: chocolate;
@@ -12,32 +46,60 @@
     
   
   }
-
-  body{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-
-  }
-
-  #logo{
-    height: 70px;
-    width: 100px;
-  }
-
-  .button {
-  display: inline-block;
-  background: #4285f4;
-  color: #fff;
-  text-transform: uppercase;
-  padding: 0px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  -webkit-transition: all ease-in-out 300ms;
-  transition: all ease-in-out 300ms;
+/* for the logout button */
+.cta {
+  border: none;
+  background: none;
 }
-.button:hover {
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* .button:hover {
   box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
   -webkit-transform: translate(0px, -10px) scale(1.2);
           transform: translate(0px, -10px) scale(1.2);
-}
+} */
 

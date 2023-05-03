@@ -26,6 +26,9 @@
 
 <!-- css file -->
 <link rel="stylesheet" href="/assets/css/styles.css">
+
+<!-- font awesome cdn -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css">
 </head>
 <style>
  
@@ -37,12 +40,21 @@
       <img id="logo" src="/assets/images/cg-vak.png" alt="logo">
       
       <input id="searchvalue" type="text" placeholder="Search by EmpName" onkeyup="search()" >
-      <div class="button" onclick="createEmployee()" id="create1" >CREATE</div>
+      <button class="cta" onclick="location.href='loginpage.html'">
+        <span class="hover-underline-animation"> Log Out</span>
+        <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
+            <path transform="translate(30)" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" data-name="Path 10" id="Path_10"></path>
+        </svg>
+    </button>
     </div>
   </nav>
+ 
 
     <div class="table-responsive container ">
-    <table class="table table-striped table-hover table-bordered">
+      <label id="ed">EMPLOYEE DETAILS</label>
+      
+      <div class="button" onclick="createEmployee()" id="create1" >CREATE</div>
+    <table class="table table-striped mt-4 table-hover table-bordered">
         <thead>
           <tr>
             <th scope="col">EMPID</th>
