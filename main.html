@@ -29,17 +29,18 @@
 
 <!-- font awesome cdn -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css">
-</head>
-<style>
- 
-</style>
 
-<body>
+<!-- favicon -->
+<link rel="icon" href="/assets/images/favicon.png">
+</head>
+
+
+<body style="background-image: url(/assets/images/);background-repeat: no-repeat;">
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <img id="logo" src="/assets/images/cg-vak.png" alt="logo">
       
-      <input id="searchvalue" type="text" placeholder="Search by EmpName" onkeyup="search()" >
+      <input id="searchvalue" class="ms-auto" type="text" placeholder="Search by EmpName" onkeyup="search()" >
       <button class="cta" onclick="location.href='loginpage.html'">
         <span class="hover-underline-animation"> Log Out</span>
         <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
@@ -75,8 +76,12 @@
         </tbody>
       </table>
     </div>
+    <footer class="bg-light fixed-bottom" style="color: rgb(9, 9, 6);">
+      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="https://www.cgvakindia.com/">CG-Vak INDIA</a>
+      </div>
+    </footer>
 </body>
 
 </html>
-
-<img src="" alt="">

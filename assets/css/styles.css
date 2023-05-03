@@ -8,6 +8,8 @@ body{
   width: 140px;
 }
 
+
+
 #logo:hover{
  scale: 1.1;
 }
@@ -15,6 +17,14 @@ body{
 #ed{
   font-size: 25px;
   font-style: italic;
+}
+
+/* for the search input element */
+#searchvalue{
+  border-color: chocolate;
+  border-radius: 7px;
+  box-shadow: 3px 3px 2px gray;
+  height: 30px;
 }
 
 .button {
@@ -37,15 +47,7 @@ transition: all ease-in-out 300ms;
 
   
 
-  #searchvalue{
-    border-color: chocolate;
-    border-radius: 7px;
-    box-shadow: 3px 3px 2px gray;
-    height: 30px;
 
-    
-  
-  }
 /* for the logout button */
 .cta {
   border: none;

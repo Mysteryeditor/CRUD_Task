@@ -36,11 +36,9 @@ function search() {
 // creating the record
 
 function createEmployee() {
-
   Swal.fire({
     title: "Create user",
     html:
-
       '<input id="id" type="hidden">' +
       '<input id="empname" class="swal2-input" placeholder="Employee Name" required>' +
       '<label for="empname">Employee Name</label>' +
@@ -67,7 +65,7 @@ function createEmployee() {
       const department = deptinput.trim();
       const designation = designationInput.trim();
       const salary = salinput.trim();
-
+// required field validation
       if (!empname || !DOJ || !department || !designation || !salary) {
         Swal.fire({
           icon: 'warning',
@@ -101,14 +99,14 @@ function userCreate() {
       department: department,
       designation: designation,
       salary: salary,
-      image: "https://www.melivecode.com/users/3.png",
+      image: "https://www.melivecode.com/users/3.png",//default image
 
     })
   );
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
-      Swal.fire(objects["message"]);
+      
       loadTable();
     }
   };
@@ -128,7 +126,6 @@ function showUserEditBox(id) {
         title: "Edit Employee",
         html:
           '<input id="id" type="hidden" value="' + objects[`${id}`] + '">' +
-
           '<input id="empname" class="swal2-input" required type="text" value="' + objects[`empname`] + '">' +
           '<label for="empname">Employee Name</label>' +
           '<input id="DOJ" type="text" class="swal2-input" value="' + objects[`DOJ`] + '">' +
@@ -140,6 +137,7 @@ function showUserEditBox(id) {
           '<label for="designation">EMP Designation</label>' +
           '<input id="salary" type="text" class="swal2-input"  value="' + objects[`salary`] + '">' +
           '<label for="designation">Monthly Salary</label>',
+          showCancelButton: true,
         preConfirm: () => {
           userEdit(id);
         }
@@ -172,15 +170,14 @@ function userEdit(id) {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
+    
+      
     }
-    Swal.fire({
-      title: 'Successfully Updated',
-      icon: 'success'
-    });
     loadTable();
+  };
+  
 
-  }
-
+  
 }
 
 // deleting the record
