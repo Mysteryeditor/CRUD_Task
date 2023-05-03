@@ -30,23 +30,7 @@ function loadTable(empname='') {
           console.log(this.responseText);
           var trHTML = "";
           const objects = JSON.parse(this.responseText);
-        //   for the random generation of the employeeimage
-          const avatarData = {
-            "avatars": [
-              {"url": "https://www.melivecode.com/users/1.png"},
-              {"url": "https://www.melivecode.com/users/2.png"},
-              {"url": "https://www.melivecode.com/users/3.png"},
-              {"url": "https://www.melivecode.com/users/4.png"},
-              {"url": "https://www.melivecode.com/users/5.png"},
-              {"url": "https://www.melivecode.com/users/6.png"},
-              {"url": "https://www.melivecode.com/users/7.png"},
-              {"url": "https://www.melivecode.com/users/8.png"}
-            ]
-          }
-          const avatarUrls = avatarData.avatars; // extract the avatar URLs from avatarData
-          for (let i = 0; i < objects.length; i++) {
-            const object = objects[i];
-            const avatarUrl = avatarUrls[i % avatarUrls.length].url; // select the avatar URL based on the index
+          for (let object of objects) {
             trHTML += "<tr>";
             trHTML += "<td>" + object["id"] + "</td>";
             trHTML += "<td>" + object["empname"] + "</td>";
@@ -54,7 +38,7 @@ function loadTable(empname='') {
             trHTML += "<td>" + object["department"] + "</td>";
             trHTML += "<td>" + object["designation"] + "</td>";
             trHTML += "<td>" + object["salary"] + "</td>";
-            trHTML += '<td><img style="width:50px;height:50px" src="' + avatarUrl + '"></td>'; // use the selected avatar URL
+            trHTML += '<td><img style="width:50px;height:50px" src="' + object["image"] + '"></td>'; // use the selected avatar URL
             trHTML += '<td><button type="button" class="btn btn-outline-primary" onclick="showUserEditBox(' + object["id"] + ')">Edit</button>';
             trHTML += '<button type="button" class="btn btn-outline-danger" onclick="userDelete(' + object["id"] + ')">Del</button></td>';
             trHTML += "</tr>";
@@ -110,9 +94,9 @@ function createEmployee() {
       
           if (!empname || !DOJ || !department || !designation || !salary) {
             Swal.fire({
-              icon: 'error',
-              title: 'Validation error',
-              text: 'Please fill in the fields',
+              icon: 'warning',
+              title: 'Please fill in the fields',
+              text: 'Validation error',
             });
             return false;
           }
@@ -141,7 +125,7 @@ function userCreate() {
             department: department,
             designation: designation,
             salary: salary,
-            // image: "https://www.melivecode.com/users/1.png",
+            image: "https://www.melivecode.com/users/3.png",
 
         })
     );
