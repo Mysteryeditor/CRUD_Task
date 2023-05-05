@@ -26,6 +26,11 @@ function loadTable(empname = '') {
 }
 loadTable();
 
+// for the tooltip of edit and delete
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
 // searching
 function search() {
   const empname = document.getElementById("searchvalue").value;
@@ -104,16 +109,16 @@ function userCreate() {
       department: department,
       designation: designation,
       salary: salary,
-      image: filename,//the value that is passed
+      image: filename,//the value that is concatenated
 
     })
   );
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      const objects = JSON.parse(this.responseText);
+      loadTable();
     }
   };
-  loadTable();
+
 
 }
 
@@ -175,9 +180,9 @@ function userEdit(id) {
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      const objects = JSON.parse(this.responseText);
+      loadTable();
     }
-    loadTable();
+    
   };
 }
 
@@ -199,17 +204,13 @@ function userDelete(id) {
   }).then((result) => {
     if (result.value) {
       xhttp.send(JSON.stringify({ id: id, }));
-
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4) { loadTable(); }
       }
     }
   });
 }
-// for the tooltip of edit and delete
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-});
+
 
 
 

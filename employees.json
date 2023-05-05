@@ -1,3 +1,22 @@
 {
-  "employees": []
+  "employees": [
+    {
+      "empname": "Srikanth",
+      "DOJ": "22/07/2023",
+      "department": "Flutter",
+      "designation": "Dev",
+      "salary": "2000000",
+      "image": "assets/images/bg.jpg",
+      "id": 1
+    },
+    {
+      "empname": "Darshan",
+      "DOJ": "23/02/2023",
+      "department": "Networking",
+      "designation": "Developer",
+      "salary": "1000000",
+      "image": "assets/images/cg-vak.png",
+      "id": 2
+    }
+  ]
 }
