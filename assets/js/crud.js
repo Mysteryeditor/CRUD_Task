@@ -114,9 +114,10 @@ const filename = "assets/images/" + imageInput.files[0].name;
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
       
-      loadTable();
+      
     }
   };
+  loadTable();
 
 }
 
