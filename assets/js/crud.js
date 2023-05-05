@@ -24,7 +24,6 @@ function loadTable(empname = '') {
     }
   };
 }
-
 loadTable();
 
 // searching
@@ -34,24 +33,23 @@ function search() {
 }
 
 // creating the record
-
 function createEmployee() {
   Swal.fire({
     title: "Create user",
     html:
-    '<input id="id" type="hidden">'+
-'<input id="empname" class="swal2-input" placeholder="Employee Name" required>'+
-'<label for="empname">Employee Name</label>'+
-'<input id="DOJ" class="swal2-input" placeholder="Joining Date" required>'+
-'<label for="DOJ">Date Of Joining</label>'+
-'<input id="department" class="swal2-input" placeholder="Department" required>'+
-'<label for="department">EMP Department</label>'+
-'<input id="designation" class="swal2-input" placeholder="Designation" required>'+
-'<label for="designation">EMP Designation</label>'+
-'<input id="salary" class="swal2-input" placeholder="Salary" required>'+
-'<label for="salary">Monthly Salary</label>'+
-'<input type="file" style="margin-left:50px;margin-top:20px"id="image" accept="image/*" required>'+
-'<label for="image">Employee Image</label>',
+      '<input id="id" type="hidden">' +
+      '<input id="empname" class="swal2-input" placeholder="Employee Name" required>' +
+      '<label for="empname">Employee Name</label>' +
+      '<input id="DOJ" class="swal2-input" placeholder="Joining Date" required>' +
+      '<label for="DOJ">Date Of Joining</label>' +
+      '<input id="department" class="swal2-input" placeholder="Department" required>' +
+      '<label for="department">EMP Department</label>' +
+      '<input id="designation" class="swal2-input" placeholder="Designation" required>' +
+      '<label for="designation">EMP Designation</label>' +
+      '<input id="salary" class="swal2-input" placeholder="Salary" required>' +
+      '<label for="salary">Monthly Salary</label>' +
+      '<input type="file" style="margin-left:50px;margin-top:20px"id="image" accept="image/*" required>' +
+      '<label for="image">Employee Image</label>',
 
     showCancelButton: true,
 
@@ -68,7 +66,7 @@ function createEmployee() {
       const department = deptinput.trim();
       const designation = designationInput.trim();
       const salary = salinput.trim();
-// required field validation
+      // required field validation
       if (!empname || !DOJ || !department || !designation || !salary) {
         Swal.fire({
           icon: 'warning',
@@ -92,8 +90,8 @@ function userCreate() {
   const designation = document.getElementById("designation").value;
   const salary = document.getElementById("salary").value;
 
-const imageInput = document.getElementById("image");
-const filename = "assets/images/" + imageInput.files[0].name;
+  const imageInput = document.getElementById("image");
+  const filename = "assets/images/" + imageInput.files[0].name;
 
 
   const xhttp = new XMLHttpRequest();
@@ -106,15 +104,13 @@ const filename = "assets/images/" + imageInput.files[0].name;
       department: department,
       designation: designation,
       salary: salary,
-      image: filename,//default image
+      image: filename,//the value that is passed
 
     })
   );
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
-      
-      
     }
   };
   loadTable();
@@ -144,9 +140,9 @@ function showUserEditBox(id) {
           '<input id="designation" type="text" class="swal2-input" value="' + objects[`designation`] + '">' +
           '<label for="designation">EMP Designation</label>' +
           '<input id="salary" type="text" class="swal2-input"  value="' + objects[`salary`] + '">' +
-          '<label for="designation">Monthly Salary</label>'+
-          '<input style="margin-left:50px;margin-top:20px" id="image" type="file" class="swal2-input" value="' + objects[`image`] + '">' ,
-          showCancelButton: true,
+          '<label for="designation">Monthly Salary</label>' +
+          '<input style="margin-left:50px;margin-top:20px" id="image" type="file" class="swal2-input" value="' + objects[`image`] + '">',
+        showCancelButton: true,
         preConfirm: () => {
           userEdit(id);
         }
@@ -162,7 +158,7 @@ function userEdit(id) {
   const designation = document.getElementById("designation").value;
   const salary = document.getElementById("salary").value;
   const imageInput = document.getElementById("image");
-const filename = "assets/images/" + imageInput.files[0].name;
+  const filename = "assets/images/" + imageInput.files[0].name;
   const xhttp = new XMLHttpRequest();
   xhttp.open("PUT", `http://localhost:3000/employees/${id}`);
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -173,21 +169,16 @@ const filename = "assets/images/" + imageInput.files[0].name;
       department: department,
       designation: designation,
       salary: salary,
-      image: filename, 
+      image: filename,
     })
   );
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
-    
-      
     }
     loadTable();
   };
-  
-
-  
 }
 
 // deleting the record
